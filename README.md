@@ -1,20 +1,18 @@
 # random password
 import random
+import string
 
-print("🎲 Welcome to Number Guessing Game")
-print("Main 1 se 100 ke beech ek number soch raha hoon...")
+def generate_password(length=12):
+    letters = string.ascii_letters      # a-z A-Z
+    digits = string.digits              # 0-9
+    symbols = string.punctuation        # !@#$%^&* etc
 
-number = random.randint(1, 100)
-attempts = 0
+    all_chars = letters + digits + symbols
 
-while True:
-    guess = int(input("Apna guess daalo: "))
-    attempts += 1
+    password = ''.join(random.choice(all_chars) for _ in range(length))
+    return password
 
-    if guess < number:
-        print("📉 Too Low! Dobara try karo.")
-    elif guess > number:
-        print("📈 Too High! Dobara try karo.")
-    else:
-        print(f"🎉 Mubarak ho! Tumne {attempts} attempts me sahi guess kar liya.")
-        break
+# User se length lena
+length = int(input("Password ki length batao: "))
+print("Generated Password:", generate_password(length))
+
